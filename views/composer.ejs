@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="KO">
+    <head>
+        <meta charset="UTF-8" />
+        <title>동서대학교 AI 작사 작곡</title>
+        <link rel="stylesheet" href="/stylesheets/detail.css" />
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+
+        <div id="navbar">
+            <div class="wrap">
+                <!-- #item*14 또는 div.item*14 -->
+                <div class="item_logo">
+                    <img src="images/music.jpg">
+                </div>
+                <div class="item">
+                    <a href="/"><font size = "3vw" color = "white">홈</font> </a>
+                </div>
+                <div class="item">
+                    <a href="/composer"><font size = "3vw" color = "white">작곡실</font> </a>
+                </div>
+                <div class="item">
+                    <a href="/writing"><font size = "3vw" color = "white">작사실</font> </a>
+                </div>
+                <div class="item">
+                    <a href="#"><font size = "3vw" color = "white">작사 자판기</font> </a>
+                </div>
+                <div class="item">
+                    <a href="/"><font size = "3vw" color = "white">도움말</font> </a>
+                </div>
+            </div>
+        </div>
+
+        <form action="/" method="post" class="com_hyperparameter_css">
+            <div class="">
+                <label> 한 음원 총 마디 수: </label>
+                <span id="value1"></span> <br>
+                <input type="range" id="melodyRange" class="range_option" name="points" min="0" max="300" step="1" value="150" 
+                oninput="document.getElementById('value1').innerHTML=this.value;">
+            </div>
+            <div class="">
+                <label> 음원 생성 첫 시작음: </label>
+                <span id="value2"></span> <br>
+                <input type="range" id="firstMelody" class="range_option" name="points" min="40" max="80" step="1" value="60" 
+                oninput="document.getElementById('value2').innerHTML=this.value;">
+            </div>
+            <div class="">
+                <label> 생성할 결과물 개수: </label>
+                <span id="value3"></span> <br>
+                <input type="range" id="songResult" class="range_option" name="points" min="0" max="20" step="1" value="10" 
+                oninput="document.getElementById('value3').innerHTML=this.value;">
+            </div><br>
+            
+            <button type="submit">작곡 시작</button>
+        </form>
+    </body>
+</html>
+
