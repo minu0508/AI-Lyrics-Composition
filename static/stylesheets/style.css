@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --col-blue: #2997ff;
+    --col-white: #ffffff;
+    --col-gray0: #fbfbfd;
+    --col-gray1: #f5f5f7;
+    --col-gray2: #e8e8ed;
+    --col-gray3: #999999;
+    --col-gray4: #86868b;
+    --col-gray5: #6e6e73;
+    --col-gray6: #434344;
+    --col-gray7: #161617;
+    --col-black: #000000;
+    --max-width: 1024px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--col-blue);
+}
+
+body {
+    background: url(/static/images/school_3.jpg);
+}

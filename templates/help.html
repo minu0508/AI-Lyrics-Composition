@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Diary Writing System</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/detail.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    </head>
+<body>
+    <div id="navbar">
+        <div class="wrap">
+            <!-- #item*14 또는 div.item*14 -->
+            <div class="item_logo">
+                <img src="/static/images/music.jpg">
+            </div>
+            <div class="item">
+                <a href="/"><font size = "3vw" color = "white">홈</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('composePage')}}"><font size = "3vw" color = "white">작곡</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('writePage')}}"><font size = "3vw" color = "white">작사</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('helpPage')}}"><font size = "3vw" color = "white">사용법</font> </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="tradein" class="item">
+            <div class="help_Box">
+                <h1>사용법</h1><br>
+                <hr><br>
+                <p class="sentence_margin">
+                    <h3> 1. AI 작곡 설명</h3><br>
+                    <p>
+                        <strong>(1). 한 음원 총 마디 수:</strong> 해당 음악 조각에 몇 개의 마디가 포함되어 있는지를 나타내는 것입니다. (즉, 총 음악의 길이를 의미)<br><br>
+                        <strong>(2). 음원 생성 첫 시작음:</strong> 음원의 첫 음표의 정도를 말하는 것으로, 이 시작음으로 인해서 이후의 음표가 자연스럽게 생성됩니다.<br><br>
+                        <strong>(3). 생성할 결과물 개수:</strong> 완성된 음원 결과물을 총 몇 개 생성할지를 정하는 기능을 말합니다.<br><br>
+                    </p>
+                </p><br>
+                <p class="sentence_margin">
+                    <h3> 2. AI 작사 설명</h3><br>
+                    <p>
+                        <strong>(1). Top-p:</strong> 확률 값이 높은 순서대로 내림차순으로 정렬한 후, 누적 확률 값이 p 이하인 단어들 중 하나를 다음 단어로 선택하는 것입니다.<br><br>
+                        <strong>(2). Top-k:</strong> 다음에 가능성이 있는 단어들 중 가장 높은 확률 가진 k개의 단어만을 고려하도록 하는 것입니다.<br><br>
+                        <strong>(3). Temperature:</strong> 다양한 문장이 생성될 가능성이 높은 것이지만, 생성 문장의 품질이 많이 나빠질 가능성이 있는 것입니다.<br><br>
+                        <strong>(4). Reposition Penalty:</strong> 이 방식으로 반복을 통제할 수 있으며, 예시로 값이 1일 경우 아무런 패널티를 적용하지 않는 것을 의미합니다.<br><br>
+                        <strong>(5). Keyword:</strong> 생성될 가사의 주제가 될 것으로 이 키워드를 시작으로 이후 가사가 생성됩니다.<br><br>
+                    </p>
+                </p><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

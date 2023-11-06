@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="KO">
+    <head>
+        <meta charset="UTF-8" />
+        <title>동서대학교 AI 작사 작곡</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/detail.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/style.css') }}"/>
+    </head>
+    <body>
+
+        <div id="navbar">
+            <div class="wrap">
+                <!-- #item*14 또는 div.item*14 -->
+                <div class="item_logo">
+                    <img src="/static/images/music.jpg">
+                </div>
+                <div class="item">
+                    <a href="/"><font size = "3vw" color = "white">홈</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('composePage')}}"><font size = "3vw" color = "white">작곡</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('writePage')}}"><font size = "3vw" color = "white">작사</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('helpPage')}}"><font size = "3vw" color = "white">사용법</font> </a>
+                </div>
+            </div>
+        </div>
+
+        <form action="/composing" method="post" class="com_hyperparameter_css">
+            <div class="">
+                <label> 한 음원 총 마디 수: </label>
+                <span id="value1"></span> <br>
+                <input type="range" id="melodyLength" class="range_option" name="melodyLength" min="0" max="300" step="1" value="150" 
+                oninput="document.getElementById('value1').innerHTML=this.value;">
+            </div>
+            <div class="">
+                <label> 음원 생성 첫 시작음: </label>
+                <span id="value2"></span> <br>
+                <input type="range" id="firstMelody" class="range_option" name="firstMelody" min="40" max="80" step="1" value="60" 
+                oninput="document.getElementById('value2').innerHTML=this.value;">
+            </div>
+            <div class="">
+                <label> 생성할 결과물 개수: </label>
+                <span id="value3"></span> <br>
+                <input type="range" id="songResult" class="range_option" name="songResult" min="0" max="20" step="1" value="10" 
+                oninput="document.getElementById('value3').innerHTML=this.value;">
+            </div><br>
+            
+            <button type="submit">작곡 시작</button>
+            <br><br>
+            <p>
+                <strong>
+                    ※ 로딩 시간은 최대 5분이 걸릴 수 있으며, 5분 이상 걸릴 시 새로고침 후 다시 버튼을 눌러주세요.<br><br>
+                    ※ 페이지가 변동될 때까지 잠시 기다려 주세요. <br>
+                </strong>
+            </p>
+        </form>
+    </body>
+</html>

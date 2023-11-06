@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="KO">
+    <head>
+        <meta charset="UTF-8" />
+        <title>동서대학교 AI 작사 작곡</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/detail.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/style.css') }}"/>
+    </head>
+    <body>
+
+        <div id="navbar">
+            <div class="wrap">
+                <!-- #item*14 또는 div.item*14 -->
+                <div class="item_logo">
+                    <img src="/static/images/music.jpg">
+                </div>
+                <div class="item">
+                    <a href="/"><font size = "3vw" color = "white">홈</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('composePage')}}"><font size = "3vw" color = "white">작곡</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('writePage')}}"><font size = "3vw" color = "white">작사</font> </a>
+                </div>
+                <div class="item">
+                    <a href="{{url_for('helpPage')}}"><font size = "3vw" color = "white">사용법</font> </a>
+                </div>
+            </div>
+        </div>
+
+        <form action="/writing" method="post" class="wri_hyperparameter_css">
+            <div>
+                <label> Max Length: </label>
+                <span id="value1"></span> <br>
+                <input type="range" id="maxLength" class="range_option" name="maxLength" min="0" max="300" step="10" value="150" 
+                oninput="document.getElementById('value1').innerHTML=this.value;">
+            </div>
+            <div>
+                <label> Top-k: </label>
+                <span id="value2"></span> <br>
+                <input type="range" id="top_k" class="range_option" name="top_k" min="30" max="70" step="1" value="50" 
+                oninput="document.getElementById('value2').innerHTML=this.value;">
+            </div>
+            <div>
+                <label> Top-p: </label>
+                <span id="value3"></span> <br>
+                <input type="range" id="top_p" class="range_option" name="top_p" min="0.5" max="1.0" step="0.05" value="0.75" 
+                oninput="document.getElementById('value3').innerHTML=this.value;">
+            </div>
+            <div>
+                <label> Repetition Penalty: </label>
+                <span id="value4"></span> <br>
+                <input type="range" class="range_option" id="repetitionpenalty" name="repetitionpenalty" min="0.8" max="1.2" step="0.1" value="1.0" 
+                oninput="document.getElementById('value4').innerHTML=this.value;">
+            </div>
+            <div>
+                <label> Keyword </label><br>
+                <input type="text" id="keyword" name="keyword" size="30">
+            </div> <br>
+
+            <button type="submit" >작곡 시작</button>
+        </form>
+    </body>
+</html>

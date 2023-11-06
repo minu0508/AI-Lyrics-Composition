@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Diary Writing System</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/detail.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    </head>
+<body>
+    <div id="navbar">
+        <div class="wrap">
+            <!-- #item*14 또는 div.item*14 -->
+            <div class="item_logo">
+                <img src="/static/images/music.jpg">
+            </div>
+            <div class="item">
+                <a href="/"><font size = "3vw" color = "white">홈</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('composePage')}}"><font size = "3vw" color = "white">작곡</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('writePage')}}"><font size = "3vw" color = "white">작사</font> </a>
+            </div>
+            <div class="item">
+                <a href="{{url_for('helpPage')}}"><font size = "3vw" color = "white">사용법</font> </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="tradein" class="item">
+            <div class="wriResult_Box">
+                <h2>출력 결과</h2><br><hr><br>
+                {% for w in result %}
+                <p>
+                    <strong> {{ w }} </strong>
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
