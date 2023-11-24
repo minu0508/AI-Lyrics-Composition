@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="KO">
     <head>
+        <title>AI Song Web System</title>
         <meta charset="UTF-8" />
-        <title>동서대학교 AI 작사 작곡</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/detail.css') }}"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='/stylesheets/style.css') }}"/>
     </head>
@@ -41,12 +41,6 @@
                 <span id="value2"></span> <br>
                 <input type="range" id="firstMelody" class="range_option" name="firstMelody" min="40" max="80" step="1" value="60" 
                 oninput="document.getElementById('value2').innerHTML=this.value;">
-            </div>
-            <div class="">
-                <label> 생성할 결과물 개수: </label>
-                <span id="value3"></span> <br>
-                <input type="range" id="songResult" class="range_option" name="songResult" min="0" max="20" step="1" value="10" 
-                oninput="document.getElementById('value3').innerHTML=this.value;">
             </div><br>
             
             <button type="submit">작곡 시작</button>
