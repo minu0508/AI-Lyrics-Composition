@@ -24,7 +24,6 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    /* height: 580px; */
 }
 
 .item_logo {
@@ -60,7 +59,7 @@
     opacity: 0.6;
     border-radius: 20px;
     position: relative;
-    
+
 }
 
 #content .item .link {
@@ -76,6 +75,25 @@
 #tradein {
     width: 100%;
     height: 100%;
+}
+
+#content .item .link a:first-child{
+    margin-right: 16px;
+}
+
+#content .dark {
+    color: var(--col-white);
+}
+
+#content .light {
+    color: var(--col-black);
+}
+
+#content .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .com_hyperparameter_css {
@@ -138,7 +156,7 @@
 }
 
 .comResult_Box {
-    color: white;
+    color: black;
     font-weight: bold;
     text-align: center;
     align-items: center;
@@ -148,7 +166,7 @@
     border: 0px solid #000;
     width: 700px;
     height: 320px;
-    background: var(--col-gray6);
+    background: var(--col-gray2);
     border-radius: 20px;
-    font-size: 50px;
+    font-size: 20px;
 }
