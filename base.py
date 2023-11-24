@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for, send_file
 from flask_wtf import FlaskForm
 from wtforms import (StringField, BooleanField, DateTimeField, 
                         RadioField, SelectField, TextAreaField, 
@@ -9,11 +9,13 @@ from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 import subprocess
 import os
+import secrets
 import magenta
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'mykey'
+app.secret_key = "My_Key"
 
 # ----- 작사 관련 함수 -----
 def load_model(model_path):
@@ -43,7 +45,7 @@ def generate_text(sequence, max_length, top_k, top_p, repetition_penalty, num_re
     return [tokenizer.decode(output, skip_special_tokens=True) for output in final_outputs]
 
 
-# ----- 내부 링크 연결 -----
+# ----- 필요한 페이지 -----
 @app.route('/')
 def routePage():
     return render_template("home.html")
@@ -61,7 +63,7 @@ def helpPage():
     return render_template('help.html')
 
 
-# ----- 작곡 기능 구현 -----
+# ----- 작사 기능 구현 -----
 @app.route('/writing', methods=['POST'])
 def write():
     # 입력값을 설정해둔 id로 받아오기
@@ -83,18 +85,40 @@ def write():
                                     )
     writeList = generated_lyrics[0].split('\n')
     
-    # 결과값 반환
+    # HTML 가져오기
     return render_template("writeResult.html", result = writeList)
 
+# ----- 작곡 기능 구현 -----
 @app.route('/composing', methods=['POST'])
 def compose():
-    import magenta
-    melody_Length = int(request.form['melodyLength'])
-    first_Melody = int(request.form['firstMelody'])
-    num_return_mid = int(request.form['songResult'])
-
-    os.system("python magenta/magenta/models/melody_rnn/melody_rnn_generate.py --config=attention_rnn --run_dir=DL_in_Music/FF_rnn --output_dir=DL_in_Music/FF_attention_6464 --num_outputs=1 --num_steps=640 --hparams=\"batch_size=64,rnn_layer_sizes=[64,64]\" --primer_melody=\"[57]\"")
-    return render_template('home.html')
+    # 고유 session 생성
+    user_identifier = session.get('user_id', secrets.token_urlsafe(16))
+    session['user_id'] = user_identifier
+    output_dir = "static/song/" + session['user_id']
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
+    
+    melody_Length = request.form['melodyLength']
+    first_Melody = request.form['firstMelody']
+    
+    # 명령어 CODE 생성
+    first_sentence = "python magenta/magenta/models/melody_rnn/melody_rnn_generate.py --config=attention_rnn --run_dir=DL_in_Music/FF_rnn --output_dir="
+    dir_path = output_dir + " --num_outputs=1 --num_steps="
+    second_sentence =  " --hparams=\"batch_size=64,rnn_layer_sizes=[64,64]\" --primer_melody=\"["
+    third_sentence = "]\""
+    
+    total_sentence = first_sentence + dir_path + melody_Length + second_sentence + first_Melody + third_sentence
+    
+    os.system(total_sentence)
+    
+    # SESSIOM 값과 같은 폴더에서 가장 최근 생성된 MIDI의 경로 생성
+    path = "C:/Users/user_name/OneDrive/바탕 화면/Contents_2/" + output_dir
+    file_list = os.listdir(path)
+    file_name = file_list[len(file_list) - 1]
+    song_path = "static/song/" + session['user_id'] + "/" + file_name
+    
+    # HTML 가져오기
+    return render_template('songResult.html', file_name = song_path)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=3000, debug=True)
